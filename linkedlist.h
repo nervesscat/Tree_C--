@@ -9,6 +9,7 @@ private:
     Node<T> *first;
 public:
     LinkedList();
+    ~LinkedList();
     void add(T d);
     void remove(T d);
     void print();

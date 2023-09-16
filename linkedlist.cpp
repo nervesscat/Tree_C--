@@ -4,17 +4,28 @@
 
 template <typename T>
 LinkedList<T>::LinkedList(){
-    first = NULL;
+    first = nullptr;
 }
+
+template <typename T>
+LinkedList<T>::~LinkedList(){
+    Node<T> *curr = first;
+    while(curr != nullptr){
+        Node<T> *temp = curr;
+        curr = curr->getNext();
+        delete temp;
+    }
+}
+
 
 template <typename T>
 void LinkedList<T>::add(T d){
     Node<T> *n = new Node<T>(d);
-    if(first == NULL){
+    if(first == nullptr){
         first = n;
     }else{
         Node<T> *curr = first;
-        while(curr->getNext() != NULL){
+        while(curr->getNext() != nullptr){
             curr = curr->getNext();
         }
         curr->setNext(n);
@@ -23,7 +34,7 @@ void LinkedList<T>::add(T d){
 
 template <typename T>
 void LinkedList<T>::remove(T d){
-    if(first == NULL){
+    if(first == nullptr){
         return;
     }else if(first->getData() == d){
         Node<T> *temp = first;
@@ -31,7 +42,7 @@ void LinkedList<T>::remove(T d){
         delete temp;
     }else{
         Node<T> *curr = first;
-        while(curr->getNext() != NULL){
+        while(curr->getNext() != nullptr){
             if(curr->getNext()->getData() == d){
                 Node<T> *temp = curr->getNext();
                 curr->setNext(curr->getNext()->getNext());
@@ -46,7 +57,7 @@ void LinkedList<T>::remove(T d){
 template <typename T>
 void LinkedList<T>::print(){
     Node<T> *curr = first;
-    while(curr != NULL){
+    while(curr != nullptr){
         std::cout << curr->getData() << std::endl;
         curr = curr->getNext();
     }
